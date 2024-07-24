@@ -1,13 +1,14 @@
 import org.junit.jupiter.api.Test;
-import java.util.Map;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class LoginTest extends BaseTest {
+import java.util.Map;
+
+public class ProfileTest extends BaseTest {
 
     @Test
-    public void testUserLogin() {
+    public void testUserProfilePage() {
         LogInPage loginPage = new LogInPage(driver);
         HomePage homePage = new HomePage(driver);
+        ProfilePage profilePage = new ProfilePage(driver);
 
         homePage.loginButton();
 
@@ -19,9 +20,8 @@ public class LoginTest extends BaseTest {
         // Login using the stored credentials
         loginPage.loginUser(email, password);
 
-        // Add assertions to verify successful login
-        // For example:
-//        assertEquals("Login Successfull!", homePage.successLogin);
+        profilePage.clickMyAccountButton();
+
+
     }
 }
-
