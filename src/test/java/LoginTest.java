@@ -1,5 +1,8 @@
 import org.junit.jupiter.api.Test;
+
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class LoginTest extends BaseTest {
@@ -20,8 +23,10 @@ public class LoginTest extends BaseTest {
         loginPage.loginUser(email, password);
 
         // Add assertions to verify successful login
-        // For example:
-//        assertEquals("Login Successfull!", homePage.successLogin);
+        assertEquals("Login successfull!", homePage.getSuccessLoginText());
+        assertEquals("http://localhost:5173/recipes", driver.getCurrentUrl(), "Web url not match!!!");
     }
+
+
 }
 

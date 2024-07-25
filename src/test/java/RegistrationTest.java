@@ -2,13 +2,15 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Random;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 public class RegistrationTest extends BaseTest {
 
     @Test
-    void RegisterTest() {
-        HomePage recipesPage = new HomePage(driver);
+    void RegisterTest() throws InterruptedException {
+        HomePage homePage = new HomePage(driver);
         RegistrationPage registrationPage = new RegistrationPage(driver);
-        recipesPage.registerButton();
+        homePage.registerButton();
         // Generate random user details
         String username = generateValidUsername(8);
         String email = username + "@gintaras.com";
@@ -21,11 +23,9 @@ public class RegistrationTest extends BaseTest {
         // Save credentials to a CSV file for future login tests
         CsvUtil.writeCredentials(email, password);
 
-        // Add assertions to verify successful registration
-        // For example:
-        // WebElement successMessage = driver.findElement(By.id("success_message"));
-        // assertTrue(successMessage.isDisplayed());
-
+        // Add assertions to verify successful login
+        assertEquals("User created successfully!", homePage.getSuccessLoginText());
+        assertEquals("http://localhost:5173/login", driver.getCurrentUrl(), "Web url not match!!!");
     }
 
 
@@ -52,7 +52,7 @@ public class RegistrationTest extends BaseTest {
 
         // Shuffle to ensure the fixed characters are not in the same position every time
         StringBuilder shuffledUsername = new StringBuilder();
-        while (username.length() != 0) {
+        while (!username.isEmpty()) {
             int index = random.nextInt(username.length());
             shuffledUsername.append(username.charAt(index));
             username.deleteCharAt(index);

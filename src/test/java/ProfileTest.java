@@ -2,6 +2,8 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Map;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 public class ProfileTest extends BaseTest {
 
     @Test
@@ -20,8 +22,14 @@ public class ProfileTest extends BaseTest {
         // Login using the stored credentials
         loginPage.loginUser(email, password);
 
+        // Add assertions to verify successful login
+        assertEquals("Login successfull!", homePage.getSuccessLoginText());
+        assertEquals("http://localhost:5173/recipes", driver.getCurrentUrl(), "Web url not match!!!");
+
         profilePage.clickMyAccountButton();
 
-
+        // Add assertions to verify successful login
+        assertEquals("Login successfull!", homePage.getSuccessLoginText());
+        assertEquals("http://localhost:5173/profile", driver.getCurrentUrl(), "Web url not match!!!");
     }
 }

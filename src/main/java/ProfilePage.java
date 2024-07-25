@@ -6,7 +6,7 @@ import org.openqa.selenium.support.FindBy;
 
 public class ProfilePage extends BasePage{
 
-    @FindBy(xpath = "//div[@id='navbarNavAltMarkup']//a[@href='/profile']")
+    @FindBy(css = "[class='username w-100']")
     private WebElement myAccountButton;
 
 
